@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c05249501f3d848a9beca84de2af7a, type: 3}
+  m_Name: FollowerTemplate
+  m_EditorClassIdentifier: 
+  followerName: 
+  portrait: {fileID: 0}
+  loyalty: 0
+  age: 0
+  maxAge: 0
+  isDead: 0
+  isDissident: 0
+  hunger: 0
+  happiness: 0
