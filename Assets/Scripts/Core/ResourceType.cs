@@ -1,0 +1,1 @@
+public enum ResourceType { Gold, Devotion, Wood, Stone, Food }

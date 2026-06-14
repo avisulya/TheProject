@@ -1,0 +1,1 @@
+public enum NodeType { Start, Combat, Elite, Treasure, Shop, Boss }
