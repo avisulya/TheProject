@@ -1,60 +1,113 @@
+// File: Room.cs
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class Room : MonoBehaviour
 {
     [Header("Configuration")]
     public RoomType roomType;
- 
+
     [Header("Scene references")]
-    public Transform        enemySpawnParent;    // parent for spawned enemies
+    public Transform        enemySpawnParent;
     public Transform        playerSpawnPoint;
-    public List<GameObject> doorObjects;         // walls that open on clear
     public List<Transform>  enemySpawnPoints;
- 
+
+    [Header("Door Map — which directions this room has doors for")]
+    public List<DoorEntry> doors;   // see struct below
+
     [HideInInspector] public bool isCleared;
- 
+
     private int _enemiesAlive;
- 
-    public void Initialise(List<GameObject> enemyPrefabs)
+
+    [System.Serializable]
+    public struct DoorEntry
+    {
+        public Direction  direction;
+        public GameObject doorBarrier;   // the DoorBarrier object for this direction
+        public Transform  doorTP;        // the TP_X transform for this direction
+    }
+
+    public bool HasDoor(Direction dir)
+    {
+        foreach (var d in doors) if (d.direction == dir) return true;
+        return false;
+    }
+
+    public DoorEntry? GetDoor(Direction dir)
+    {
+        foreach (var d in doors) if (d.direction == dir) return d;
+        return null;
+    }
+
+    public void Initialise(List<GameObject> enemyPrefabs, List<Direction> activeDoors)
     {
         _enemiesAlive = 0;
-        isCleared     = roomType != RoomType.Combat && roomType != RoomType.Elite;
- 
+        isCleared = roomType != RoomType.Combat
+                 && roomType != RoomType.Elite
+                 && roomType != RoomType.Boss;
+
+        // Lock only the doors that are part of this dungeon's layout.
+        // Doors NOT in activeDoors stay permanently closed (never toggled, never opened).
+        CloseActiveDoors(activeDoors);
+
+        if (roomType == RoomType.Boss)
+        {
+            var boss = GetComponentInChildren<BossAI>();
+            if (boss != null)
+                GameEvents.OnDungeonCompleted += OnBossDefeated;
+            return;
+        }
+
         if (!isCleared)
         {
-            CloseDoors();
             foreach (var prefab in enemyPrefabs)
             {
-                var spawnPt = enemySpawnPoints[_enemiesAlive % enemySpawnPoints.Count];
-                var enemy   = Instantiate(prefab, spawnPt.position, Quaternion.identity, enemySpawnParent);
+                var pt    = enemySpawnPoints[_enemiesAlive % enemySpawnPoints.Count];
+                var enemy = Instantiate(prefab, pt.position,
+                                        Quaternion.identity, enemySpawnParent);
                 enemy.GetComponent<EnemyHealth>().OnDied += OnEnemyDied;
                 _enemiesAlive++;
             }
         }
+        else
+        {
+            OpenActiveDoors(activeDoors);
+        }
     }
- 
+
+    private void OnBossDefeated()
+    {
+        GameEvents.OnDungeonCompleted -= OnBossDefeated;
+        ClearRoom();
+    }
+
     private void OnEnemyDied()
     {
         _enemiesAlive--;
-        if (_enemiesAlive <= 0)
-            ClearRoom();
+        if (_enemiesAlive <= 0) ClearRoom();
     }
- 
+
     private void ClearRoom()
     {
         isCleared = true;
-        OpenDoors();
         GameEvents.RoomCleared();
     }
- 
-    private void CloseDoors()
+
+    private void CloseActiveDoors(List<Direction> activeDoors)
     {
-        foreach (var d in doorObjects) d.SetActive(true);
+        foreach (var dir in activeDoors)
+        {
+            var entry = GetDoor(dir);
+            if (entry.HasValue) entry.Value.doorBarrier.SetActive(true);
+        }
     }
- 
-    private void OpenDoors()
+
+    public void OpenActiveDoors(List<Direction> activeDoors)
     {
-        foreach (var d in doorObjects) d.SetActive(false);
+        foreach (var dir in activeDoors)
+        {
+            var entry = GetDoor(dir);
+            if (entry.HasValue) entry.Value.doorBarrier.SetActive(false);
+        }
     }
 }

@@ -15,6 +15,11 @@ public class Follower : MonoBehaviour
     private void Awake() => _agent = GetComponent<NavMeshAgent>();
  
     private void Start() => AssignIdleTask();
+
+    private void Update()
+    {
+        _currentTask?.Tick();
+    }
  
     public void OnDayTick()
     {

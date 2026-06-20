@@ -8,6 +8,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/WorldMap.unity
+    guid: e6cb3e42036e31f4a97bbbafc2d97cc0
+  - enabled: 1
+    path: Assets/Scenes/Base.unity
+    guid: 40ab8c1bbd911e54082ae622cd4bf99b
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_Combat.unity
+    guid: d79bf1a4e1569f648bdc4e4128513ccb
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_Elite.unity
+    guid: 3ee5dc7813a852444998d38770e686a4
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_Treasure.unity
+    guid: 952814d70e748304d8c337a35c516a7e
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_Boss.unity
+    guid: 6d1c2125910ab024ca5f28cce8b81233
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
