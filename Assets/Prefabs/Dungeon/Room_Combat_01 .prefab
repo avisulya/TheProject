@@ -749,29 +749,24 @@ MonoBehaviour:
   roomType: 1
   enemySpawnParent: {fileID: 865218677920215125}
   playerSpawnPoint: {fileID: 0}
-  doorObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   enemySpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1937716579018493830}
+  - {fileID: 8001674678470724006}
+  - {fileID: 320816783722433580}
+  - {fileID: 4715707508885003055}
   doors:
   - direction: 0
-    doorBarrier: {fileID: 0}
-    doorTP: {fileID: 0}
-  - direction: 0
-    doorBarrier: {fileID: 0}
-    doorTP: {fileID: 0}
-  - direction: 0
-    doorBarrier: {fileID: 0}
-    doorTP: {fileID: 0}
-  - direction: 0
-    doorBarrier: {fileID: 0}
-    doorTP: {fileID: 0}
+    doorBarrier: {fileID: 1455852565145932402}
+    doorTP: {fileID: 6561728814845102779}
+  - direction: 1
+    doorBarrier: {fileID: 7365271359382797022}
+    doorTP: {fileID: 5382311741503131298}
+  - direction: 2
+    doorBarrier: {fileID: 4830913202240196523}
+    doorTP: {fileID: 7780554003358533677}
+  - direction: 3
+    doorBarrier: {fileID: 6977375586535846750}
+    doorTP: {fileID: 7858286303049128287}
   isCleared: 0
 --- !u!1 &3065567277730745647
 GameObject:

@@ -908,9 +908,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runState: {fileID: 11400000, guid: eac39604c26d6ec4eb55f2d501b30e53, type: 2}
-  nodeViewPrefab: {fileID: 0}
-  edgeViewPrefab: {fileID: 0}
-  cursorPrefab: {fileID: 0}
+  nodeViewPrefab: {fileID: 4555786158795699358, guid: da05e0e20436274499a18a2b3cdfd4b7, type: 3}
+  edgeViewPrefab: {fileID: 6178270086685192098, guid: 6f0fd5188099f944e905c434e61554f0, type: 3}
+  cursorPrefab: {fileID: 2908017911883965702, guid: 2110bdb7f6385f643acb8c15eccea972, type: 3}
   nodeContainer: {fileID: 26089003}
   edgeContainer: {fileID: 486285610}
   cursorContainer: {fileID: 1391021892}

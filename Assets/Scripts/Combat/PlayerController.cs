@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private RunState    runState;
     [SerializeField] private GameObject  projectilePrefab;
     [SerializeField] private Transform   firePoint;
+
+    // inside PlayerController class, add this field:
+    [SerializeField] private bool canAttack = true;
  
     private CharacterController _cc;
     private Vector3             _moveDir;
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour
  
     private void HandleAttack()
     {
+        if (!canAttack) return;   // <-- add this
         _attackTimer -= Time.deltaTime;
         if (Mouse.current.leftButton.isPressed && _attackTimer <= 0f)
         {

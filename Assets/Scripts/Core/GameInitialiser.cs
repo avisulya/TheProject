@@ -10,7 +10,7 @@ public class GameInitialiser : MonoBehaviour
     {
         gameState.Reset();
         runState.StartNewRun(defaultGraph);
-        SceneTransition.LoadWorldMap();
+        SceneTransition.LoadBase();   // was LoadWorldMap
     }
  
     public void ContinueGame()
